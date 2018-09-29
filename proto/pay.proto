@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package proto;
+
+service PayManager {
+    rpc Charge (ChargeRequest) returns (ChargeResponse) {}
+}
+
+message ChargeRequest {
+    int64 id = 1;
+    string token = 2;
+    int64 amount = 3;
+    string name = 4;
+    string description = 5;
+}
+
+message ChargeResponse {
+    bool paid = 1;
+    int64 amount = 2;
+    bool captured = 3;
+}
