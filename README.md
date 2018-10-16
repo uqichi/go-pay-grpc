@@ -8,3 +8,5 @@ ref:
 - https://github.com/payjp/payjp-go
 - https://pay.jp/docs/started
 - https://pay.jp/docs/checkout
+- https://github.com/payjp/payjp-example
+- https://github.com/payjp/payjp.github.io
