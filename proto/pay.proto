@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package proto;
+package pb;
 
-service PayManager {
+service PayService {
     rpc Charge (ChargeRequest) returns (ChargeResponse) {}
 }
 
 message ChargeRequest {
-    int32 id = 1;
+    string id = 1;
     string token = 2;
     int32 amount = 3;
     string name = 4;

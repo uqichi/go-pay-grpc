@@ -3,38 +3,39 @@ package service
 import (
 	"context"
 	"fmt"
-	"github.com/uqichi/payjp/proto"
 	"os"
+
+	"github.com/uqichi/go-pay-grpc/proto"
 
 	"github.com/payjp/payjp-go/v1"
 )
 
-type PayManager struct {
+type PayService struct {
 	apiKey string
 }
 
-func NewPayManager() *PayManager {
-	return &PayManager {
+func NewPayService() *PayService {
+	return &PayService{
 		apiKey: os.Getenv("PAYJP_API_KEY"),
 	}
 }
 
-func (m *PayManager) Charge(ctx context.Context, req *proto.ChargeRequest) ( *proto.ChargeResponse, error) {
-	pay := payjp.New(m.apiKey, nil)
+func (s *PayService) Charge(ctx context.Context, req *pb.ChargeRequest) (*pb.ChargeResponse, error) {
+	pay := payjp.New(s.apiKey, nil)
 
 	charge, err := pay.Charge.Create(int(req.Amount), payjp.Charge{
-		Currency: "jpy",
-		CardToken: req.Token,
-		Capture: true,
+		Currency:    "jpy",
+		CardToken:   req.Token,
+		Capture:     true,
 		Description: fmt.Sprintf("%s:%s", req.Name, req.Description),
-		Metadata: nil,
+		Metadata:    nil,
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	res := &proto.ChargeResponse{
-		Paid: charge.Paid,
+	res := &pb.ChargeResponse{
+		Paid:   charge.Paid,
 		Amount: int32(charge.Amount),
 	}
 
