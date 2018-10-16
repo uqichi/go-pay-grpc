@@ -22,15 +22,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/uqichi/payjp"
-  packages = [
-    "proto",
-    "service"
-  ]
-  revision = "3cb87771c2f52fd0bee445e97c6bd5542b8e48cf"
-
-[[projects]]
-  branch = "master"
   name = "golang.org/x/net"
   packages = [
     "context",
@@ -114,6 +105,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "1bf2df6fcfc3d8545509dd47573352416c2489f4d28855df4ee041f7a410c860"
+  inputs-digest = "969629c8bda61899542415a8ec89144242e478ba1f0c7c867fb29e80aeb7cf2a"
   solver-name = "gps-cdcl"
   solver-version = 1

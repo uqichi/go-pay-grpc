@@ -1,18 +1,19 @@
 package main
 
 import (
-	"github.com/uqichi/payjp/proto"
-	"github.com/uqichi/payjp/service"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 	"log"
 	"net"
+
+	"github.com/uqichi/go-pay-grpc/proto"
+	"github.com/uqichi/go-pay-grpc/service"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 const port string = ":50051"
 
 func main() {
-	m := service.NewPayManager()
+	m := service.NewPayService()
 
 	listener, err := net.Listen("tcp", port)
 	if err != nil {
@@ -20,7 +21,7 @@ func main() {
 	}
 
 	server := grpc.NewServer()
-	proto.RegisterPayManagerServer(server, m)
+	pb.RegisterPayServiceServer(server, m)
 	reflection.Register(server)
 
 	// run server

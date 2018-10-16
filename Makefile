@@ -3,7 +3,7 @@
 protoc: ## Exec protoc
 	protoc --go_out=plugins=grpc:. proto/*.proto
 
-server: ## Run server
+run: ## Run server
 	go run server.go
 
 test: ## Exec test
